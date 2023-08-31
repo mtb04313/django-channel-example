@@ -6,7 +6,7 @@ class Domain:
     def __init__(self):
         self.R = RandomWords()
 
-    def do(self):
-        word = self.R.get_random_word()
+    def do(self, count):
+        word = str(count) + ': ' + self.R.get_random_word()
         return json.dumps({"message": word})
 

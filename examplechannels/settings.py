@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -73,8 +74,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'examplechannels.wsgi.application'
 
-#ASGI_APPLICATION = 'examplechannels.asgi.application'
-ASGI_APPLICATION = 'examplechannels.routing.application'
+ASGI_APPLICATION = 'examplechannels.asgi.application'
+#ASGI_APPLICATION = 'examplechannels.routing.application'
 
 
 # Database
@@ -139,7 +140,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'statics')
+    #os.path.join(BASE_DIR, 'statics')
+    os.path.join(BASE_DIR, 'static')
 ]
 
 

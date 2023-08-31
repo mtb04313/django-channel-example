@@ -8,6 +8,6 @@ class OneConsumer(WebsocketConsumer):
         self.accept()
         D = Domain()
         for i in range(100):
-            data = D.do()
+            data = D.do(i)
             self.send(data)
             time.sleep(2)
