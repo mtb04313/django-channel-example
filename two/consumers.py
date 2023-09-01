@@ -12,3 +12,7 @@ class TwoConsumer(AsyncWebsocketConsumer):
             data = D.do()
             await self.send(data)
             await sleep(2)
+        
+    async def disconnect(self, code):
+        pass
+        
