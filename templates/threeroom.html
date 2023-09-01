@@ -26,17 +26,12 @@
   </div>
 </div>
 {{room_name|json_script:"room-name"}}
-{{request.user.username|json_script:"username"}}
+<!-- {{request.user.username|json_script:"username"}} -->
+{{username|json_script:"username"}}
 <script>
   const userName = JSON.parse(document.getElementById("username").textContent);
   const roomName = JSON.parse(document.getElementById("room-name").textContent);
-  document.querySelector("#submit").onclick = function (e) {
-    const msgInput = document.querySelector("#input");
-    const message = msgInput.value;
-    chatSocket.send(JSON.stringify({ message: message, username: userName }));
-    msgInput.value = "";
-  };
-
+  
   const chatSocket = new WebSocket(
     "ws://" + window.location.host + "/ws/chat/" + roomName + "/"
   );
@@ -46,6 +41,18 @@
     document.querySelector("#chat-text").value +=
       data.username + ": " + data.message + "\n";
   };
+  
+  chatSocket.onclose = function(e) {
+    console.error('Chat socket closed unexpectedly');
+  };
+  
+  document.querySelector("#submit").onclick = function (e) {
+    const msgInput = document.querySelector("#input");
+    const message = msgInput.value;
+    chatSocket.send(JSON.stringify({ message: message, username: userName }));
+    msgInput.value = "";
+  };
+ 
 </script>
 <script
   src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
